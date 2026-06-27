@@ -1,5 +1,21 @@
 # Python.NET Templates for VB.NET, by Pac-Dessert1436
 
+> ## ⚠️ Warning: NO DYNAMIC TYPING in VB.NET
+>  
+> **This template package strictly enforces `Option Strict On` in all templates and does NOT support dynamic typing with Python.NET objects.**
+> 
+> Dynamic typing (using `Option Strict Off` and the dynamic `Object` type) with Python.NET's `PyObject` is strongly discouraged in VB.NET due to:
+> - **Type safety issues**: Loss of compile-time type checking
+> - **Performance overhead**: Runtime type resolution penalties
+> - **Debugging difficulties**: Obscure error messages and runtime failures
+> - **Maintenance challenges**: Code becomes harder to understand and maintain
+> 
+> ### Recommended Approach
+> Always use Python.NET's **strongly-typed API methods** to handle `PyObject` objects, including:
+> - **`GetAttr` and `SetAttr`** to access and modify attributes of `PyObject` objects.
+> - **`Invoke` and `InvokeMethod`** to call methods on `PyObject` objects.
+> - **`GetItem` and `SetItem`** to access and modify items in `PyObject` objects.
+
 A comprehensive set of VB.NET templates for creating desktop applications with Python integration using [Python.NET](https://pythonnet.github.io/), including both general-purpose Python templates and specialized bioinformatics templates using Biopython.
 
 This template package is designed to enable VB.NET developers to leverage the power of Python.NET, and create robust desktop applications with Python integration.
