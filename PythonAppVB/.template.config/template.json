@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Pac-Dessert1436",
+  "classifications": [
+    "Console",
+    "Python",
+    "VB.NET",
+    "Common"
+  ],
+  "name": "Python Console Application (VB.NET)",
+  "identity": "PacDessert1436.PythonNetTemplateVB.Python.Console",
+  "shortName": "pyappvb",
+  "tags": {
+    "language": "VB",
+    "type": "project"
+  },
+  "sourceName": "PythonAppVB",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".vs/",
+            ".vs/**/*"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BioPythonWPFVB"
+        mc:Ignorable="d"
+        Title="BioPythonWPFVB: Bioinformatics Demo" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+            <Label Content="Sequence Type:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <ComboBox x:Name="cdnSequenceType" Width="100" Margin="10">
+                <ComboBoxItem Content="DNA" IsSelected="True"/>
+                <ComboBoxItem Content="RNA"/>
+                <ComboBoxItem Content="Protein"/>
+            </ComboBox>
+            <Button x:Name="btnAnalyzeSeq" Content="Analyze Sequence" Margin="10" Padding="10,5"/>
+            <Button x:Name="btnSeqRecordDemo" Content="Sequence Record Demo" Margin="10" Padding="10,5"/>
+            <Button x:Name="btnRandomSeq" Content="Generate Random Sequence" Margin="10" Padding="10,5"/>
+            <Button x:Name="btnClear" Content="Clear Output" Margin="10" Padding="10,5"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+            <Label Content="Sequence:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="txtDNASequence" Width="500" Margin="10" 
+                     Text="ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG"
+                     ToolTip="Enter DNA sequence to analyze"/>
+        </StackPanel>
+        
+        <StackPanel Margin="5">
+            <Label Content="Analysis Results:" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtOutput" IsReadOnly="True" Height="400" 
+                     VerticalScrollBarVisibility="Auto" Foreground="DarkBlue"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

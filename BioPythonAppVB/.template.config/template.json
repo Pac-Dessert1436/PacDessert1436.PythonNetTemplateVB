@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Pac-Dessert1436",
+  "classifications": [
+    "Console",
+    "Python",
+    "Bioinformatics",
+    "Biopython"
+  ],
+  "name": "BioPython Console Application (VB.NET)",
+  "identity": "PacDessert1436.PythonNetTemplateVB.BioPython.Console",
+  "shortName": "biopyappvb",
+  "tags": {
+    "language": "VB",
+    "type": "project"
+  },
+  "sourceName": "BioPythonAppVB",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".vs/",
+            ".vs/**/*"
+          ]
+        }
+      ]
+    }
+  ]
+}

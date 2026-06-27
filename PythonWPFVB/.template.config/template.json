@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Pac-Dessert1436",
+  "classifications": [
+    "WPF",
+    "Python",
+    "VB.NET",
+    "Desktop"
+  ],
+  "name": "Python WPF Desktop Application (VB.NET)",
+  "identity": "PacDessert1436.PythonNetTemplateVB.Python.WPF",
+  "shortName": "pywpfvb",
+  "tags": {
+    "language": "VB",
+    "type": "project"
+  },
+  "sourceName": "PythonWPFVB",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".vs/",
+            ".vs/**/*"
+          ]
+        }
+      ]
+    }
+  ]
+}

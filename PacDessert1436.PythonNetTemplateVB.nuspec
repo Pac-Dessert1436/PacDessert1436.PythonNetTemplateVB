@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>PacDessert1436.PythonNetTemplateVB</id>
+    <version>1.0.0</version>
+    <title>Python.NET Templates for VB.NET</title>
+    <authors>Pac-Dessert1436</authors>
+    <owners>Pac-Dessert1436</owners>
+    <license type="expression">BSD-3-Clause</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>README.md</readme>
+    <description>A comprehensive set of VB.NET templates to create console and WPF desktop
+      applications using Python.NET and/or Biopython.</description>
+    <tags>python;pythonnet;biopython;bioinformatics;template;vbnet;console;wpf;desktop</tags>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+    <repository type="git"
+      url="https://github.com/Pac-Dessert1436/PacDessert1436.PythonNetTemplateVB" />
+  </metadata>
+  <files>
+    <!-- BioPython Console Application Template -->
+    <file src="BioPythonAppVB/**/*"
+      exclude="**/bin/**/*;**/obj/**/*;**/.git/**/*;**/*.user;**/*.suo;**/*.vsidx;**/*.dtbcache.v2;**/*.slnx;**/*.nupkg;**/*.nuspec;**/.vs/**/*;**/project.assets.json;**/*.AssemblyInfo.vb;**/.NETCoreApp*;**/Content/bin/**/*"
+      target="content" />
+
+    <!-- BioPython WPF Desktop Application Template -->
+    <file src="BioPythonWPFVB/**/*"
+      exclude="**/bin/**/*;**/obj/**/*;**/.git/**/*;**/*.user;**/*.suo;**/*.vsidx;**/*.dtbcache.v2;**/*.slnx;**/*.nupkg;**/*.nuspec;**/.vs/**/*;**/project.assets.json;**/*.AssemblyInfo.vb;**/.NETCoreApp*;**/Content/bin/**/*"
+      target="content" />
+
+    <!-- Python Console Application Template -->
+    <file src="PythonAppVB/**/*"
+      exclude="**/bin/**/*;**/obj/**/*;**/.git/**/*;**/*.user;**/*.suo;**/*.vsidx;**/*.dtbcache.v2;**/*.slnx;**/*.nupkg;**/*.nuspec;**/.vs/**/*;**/project.assets.json;**/*.AssemblyInfo.vb;**/.NETCoreApp*;**/Content/bin/**/*"
+      target="content" />
+
+    <!-- Python WPF Desktop Application Template -->
+    <file src="PythonWPFVB/**/*"
+      exclude="**/bin/**/*;**/obj/**/*;**/.git/**/*;**/*.user;**/*.suo;**/*.vsidx;**/*.dtbcache.v2;**/*.slnx;**/*.nupkg;**/*.nuspec;**/.vs/**/*;**/project.assets.json;**/*.AssemblyInfo.vb;**/.NETCoreApp*;**/Content/bin/**/*"
+      target="content" />
+
+    <!-- Root files -->
+    <file src="README.md" target="README.md" />
+  </files>
+</package>
