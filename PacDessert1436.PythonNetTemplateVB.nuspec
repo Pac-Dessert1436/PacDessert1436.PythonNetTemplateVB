@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>PacDessert1436.PythonNetTemplateVB</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>Python.NET Templates for VB.NET</title>
     <authors>Pac-Dessert1436</authors>
     <owners>Pac-Dessert1436</owners>

@@ -10,7 +10,6 @@ Imports PyConvExt = Python.Runtime.ConverterExtension
 Public Module PythonBridge
 
     Private ReadOnly _lock As New Object
-    Private _initialized As Boolean = False
     Private _globalPyScope As PyModule
 
     ''' <summary>
@@ -23,12 +22,11 @@ Public Module PythonBridge
     End Sub
 
     ''' <summary>
-    ''' Indicates whether the embedded Python runtime has been initialised
-    ''' and is ready for use.
+    ''' Indicates whether the embedded Python runtime has been initialised and is ready for use.
     ''' </summary>
     Public ReadOnly Property IsPythonInitialized As Boolean
         Get
-            Return _initialized
+            Return PythonEngine.IsInitialized
         End Get
     End Property
 
@@ -45,14 +43,11 @@ Public Module PythonBridge
     ''' </exception>
     Public Sub StartPythonRuntime(Optional pyDLLName As String = "python314")
         SyncLock _lock
-            If _initialized Then
-                Throw New InvalidOperationException(
-                    "Python runtime is already initialised. Call `StopPythonRuntime` before re-initialising.")
-            End If
+            If IsPythonInitialized Then Throw New InvalidOperationException(
+                "Python runtime is already initialised. Call `StopPythonRuntime` before re-initialising.")
 
             Runtime.PythonDLL = pyDLLName
             PythonEngine.Initialize()
-            _initialized = True
             Using Py.GIL()
                 _globalPyScope = Py.CreateScope()
             End Using
@@ -65,11 +60,10 @@ Public Module PythonBridge
     ''' </summary>
     Public Sub StopPythonRuntime()
         SyncLock _lock
-            If Not _initialized Then Exit Sub
+            If Not IsPythonInitialized Then Exit Sub
             _globalPyScope?.Dispose()
             _globalPyScope = Nothing
             PythonEngine.Shutdown()
-            _initialized = False
         End SyncLock
     End Sub
 

@@ -1,7 +1,6 @@
 ﻿Imports Python.Runtime
 Imports System.Windows.Threading
 Imports BioPythonWPFVB.BioPyWrappers
-Imports System.Windows.MessageBox
 
 Public Class MainWindow
     ' Controls are defined in XAML
@@ -167,18 +166,59 @@ result = {{
     Private Sub BtnSeqRecordDemo_Click(sender As Object, e As RoutedEventArgs) Handles btnSeqRecordDemo.Click
         AppendOutput(vbLf & "----- Sequence Record Demo -----")
 
+        If String.IsNullOrWhiteSpace(txtDNASequence.Text) Then
+            MessageBox.Show("Please enter a sequence first.", "Input Required", MessageBoxButton.OK, MessageBoxImage.Information)
+            Exit Sub
+        End If
+
+        Dim sequence = txtDNASequence.Text.ToUpperInvariant()
+        Dim recordId As String, description As String
+
         Try
-            Using dna = Seq.Create("ATGCGTACCTGAC")
-                Using record = SeqRecord.Create(
-                    dna, id:="DNA_001", description:="Synthetic DNA sequence for demonstration"
-                )
-                    AppendOutput($"Record ID: {record.Id}")
-                    AppendOutput($"Description: {record.Description}")
-                    AppendOutput($"Sequence Length: {record.Length}")
-                    AppendOutput(vbLf & "FASTA Format:")
-                    AppendOutput(record.Format("fasta"))
-                End Using
-            End Using
+            Select Case cdnSequenceType.SelectedIndex
+                Case 0 ' DNA
+                    recordId = "DNA_001"
+                    description = "User-provided DNA sequence"
+                    Using dna = Seq.Create(sequence)
+                        Using record = SeqRecord.Create(
+                            dna, id:=recordId, description:=description
+                        )
+                            AppendOutput($"Record ID: {record.Id}")
+                            AppendOutput($"Description: {record.Description}")
+                            AppendOutput($"Sequence Length: {record.Length}")
+                            AppendOutput(vbLf & "FASTA Format:")
+                            AppendOutput(record.Format("fasta"))
+                        End Using
+                    End Using
+                Case 1 ' RNA
+                    recordId = "RNA_001"
+                    description = "User-provided RNA sequence"
+                    Using rna = Seq.Create(sequence)
+                        Using record = SeqRecord.Create(
+                            rna, id:=recordId, description:=description
+                        )
+                            AppendOutput($"Record ID: {record.Id}")
+                            AppendOutput($"Description: {record.Description}")
+                            AppendOutput($"Sequence Length: {record.Length}")
+                            AppendOutput(vbLf & "FASTA Format:")
+                            AppendOutput(record.Format("fasta"))
+                        End Using
+                    End Using
+                Case 2 ' Protein
+                    recordId = "PROTEIN_001"
+                    description = "User-provided protein sequence"
+                    Using protein = Seq.Create(sequence)
+                        Using record = SeqRecord.Create(
+                            protein, id:=recordId, description:=description
+                        )
+                            AppendOutput($"Record ID: {record.Id}")
+                            AppendOutput($"Description: {record.Description}")
+                            AppendOutput($"Sequence Length: {record.Length}")
+                            AppendOutput(vbLf & "FASTA Format:")
+                            AppendOutput(record.Format("fasta"))
+                        End Using
+                    End Using
+            End Select
 
             AppendOutput(vbLf & "Sequence record demo completed successfully!")
         Catch ex As Exception

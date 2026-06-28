@@ -1,6 +1,5 @@
 ﻿Imports Python.Runtime
 Imports System.Windows.Threading
-Imports System.Windows.MessageBox
 
 Public Class MainWindow
     ' Controls are defined in XAML
@@ -31,7 +30,6 @@ Public Class MainWindow
         AppendOutput(vbLf & "===== Executing Python Code =====")
 
         ' Redirect Python stdout to capture output
-        Dim output As New List(Of String)
         Using Py.GIL()
             ' Redirect sys.stdout
             Dim sysModule = Py.Import("sys")
