@@ -2,13 +2,23 @@
 
 A comprehensive set of VB.NET templates for creating desktop applications with Python integration using [Python.NET](https://pythonnet.github.io/), including both general-purpose Python templates and specialized bioinformatics templates using Biopython.
 
-This template package is designed to enable VB.NET developers to leverage the power of Python.NET, and create robust desktop applications with Python integration. It also enforces `Option Strict On` in all templates to streamline code structure, prevent runtime errors, ensure type safety and code readability, and reduce technical debt.
+This template package is designed to enable VB.NET developers to leverage the power of Python.NET, and create robust desktop applications with Python integration. _It also enforces `Option Strict On` in all templates to streamline code structure, prevent runtime errors, ensure type safety and code readability, and reduce technical debt._
 
-> **v1.0.1 Latest Update**: This update includes the following enhancements:
-> - 🧹 **Code Cleanup**: Removed unused variables, namespace imports, and simplified Python runtime state checking by replacing the `IsPythonInitialized` backing field with direct use of `PythonEngine.IsInitialized`
-> - ✨ **Feature Completion**: Fully implemented sequence record demo functionality in the Biopython WPF template, now supporting DNA, RNA, and protein sequences from user input with proper FASTA format output
+## Version Notes: 1.0.1 → 1.0.2
 
-## ⚠️ Warning: NO DYNAMIC TYPING in VB.NET 
+### v1.0.2 Latest Update
+This update focuses on stability improvements and code consistency:
+- 🐛 **Bug Fix**: Fixed `sys.version` access in the general-purpose Python console app template to prevent `ArgumentOutOfRangeException`
+- 🔧 **API Refinement**: Removed `AsString` property from Biopython wrappers, standardizing on `ToString()` method for string operations
+- ⚡ **Performance Optimization**: Simplified Python method invocation by using `PyObject` arrays directly instead of `PyTuple` wrappers
+
+### v1.0.1 Update
+This update included foundational improvements:
+- 🧹 **Code Cleanup**: Removed unused variables, namespace imports, and simplified Python runtime state checking by replacing the `IsPythonInitialized` backing field with direct use of `PythonEngine.IsInitialized`
+- ✨ **Feature Completion**: Fully implemented sequence record demo functionality in the Biopython WPF template, now supporting DNA, RNA, and protein sequences from user input with proper FASTA format output
+
+## ⚠️ Critical Warning: NO DYNAMIC TYPING in VB.NET
+
 **This template package strictly enforces `Option Strict On` in all templates and does NOT support dynamic typing with Python.NET objects.**
 
 Dynamic typing (using `Option Strict Off` and the dynamic `Object` type) with Python.NET's `PyObject` is strongly discouraged in VB.NET due to:
@@ -96,7 +106,7 @@ dotnet new install PacDessert1436.PythonNetTemplateVB
 ### Verify Installation
 
 ```bash
-dotnet new --list
+dotnet new list
 ```
 
 You should see all four templates listed:

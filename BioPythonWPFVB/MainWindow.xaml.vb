@@ -75,11 +75,11 @@ Allowed characters: {allowedChars}", "Invalid Sequence", MessageBoxButton.OK, Me
     Private Sub AnalyzeDNASequence(sequence As String)
         Using dna = Seq.Create(sequence)
             AppendOutput(vbLf & "----- DNA Analysis Results -----")
-            AppendOutput($"Reverse Complement: {dna.ReverseComplement().AsString}")
-            AppendOutput($"Transcription (mRNA): {dna.Transcribe().AsString}")
+            AppendOutput($"Reverse Complement: {dna.ReverseComplement()}")
+            AppendOutput($"Transcription (mRNA): {dna.Transcribe()}")
 
             Using protein = dna.Translate()
-                AppendOutput($"Translation (Protein): {protein.AsString}")
+                AppendOutput($"Translation (Protein): {protein}")
                 AppendOutput($"Protein Length: {protein.Length} amino acids")
             End Using
 
@@ -106,7 +106,7 @@ frequencies = {{k: v/total*100 for k, v in counts.items()}}")
             AppendOutput(vbLf & "----- RNA Analysis Results -----")
 
             Using protein = rna.Translate()
-                AppendOutput($"Translation (Protein): {protein.AsString}")
+                AppendOutput($"Translation (Protein): {protein}")
                 AppendOutput($"Protein Length: {protein.Length} amino acids")
             End Using
 

@@ -29,12 +29,11 @@ Namespace BioPyWrappers
             ArgumentNullException.ThrowIfNull(seq)
             EnsurePythonInitialized()
             Using Py.GIL()
-                Dim kwargs As New PyDict()
+                Dim kwargs As New PyDict
                 If id IsNot Nothing Then kwargs.SetItem("id", PyConvExt.ToPython(id))
                 If description IsNot Nothing Then kwargs.SetItem("description", PyConvExt.ToPython(description))
                 If name IsNot Nothing Then kwargs.SetItem("name", PyConvExt.ToPython(name))
-                Dim instance As PyObject = SeqRecordClass.Value.Invoke(
-                    {seq.UnsafePyObject}, kwargs)
+                Dim instance = SeqRecordClass.Value.Invoke({seq.UnsafePyObject}, kwargs)
                 Return New SeqRecord(instance)
             End Using
         End Function

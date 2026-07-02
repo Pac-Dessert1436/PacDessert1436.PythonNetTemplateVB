@@ -34,12 +34,6 @@ Namespace BioPyWrappers
             End Get
         End Property
 
-        Public ReadOnly Property AsString As String
-            Get
-                Return ToString()
-            End Get
-        End Property
-
         ''' <summary><c>mseq.append('A')</c></summary>
         Public Sub Append(letter As Char)
             InvokeMethod("append", letter.ToString())
@@ -70,7 +64,7 @@ Namespace BioPyWrappers
             EnsurePythonInitialized()
             Using Py.GIL()
                 Dim seqClass = ImportBioPyModule("Bio.Seq", "Seq")
-                Dim snapshot = seqClass.Invoke({UnsafePyObject})
+                Dim snapshot = seqClass.Invoke(UnsafePyObject)
                 Return New Seq(snapshot)
             End Using
         End Function

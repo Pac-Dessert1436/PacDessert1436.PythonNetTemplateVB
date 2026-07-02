@@ -31,15 +31,14 @@ Public Module Program
         Console.WriteLine("--- DNA Sequence Analysis ---")
 
         Using dna = Seq.Create("ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG")
-            Console.WriteLine($"  DNA sequence        : {dna.AsString}")
+            Console.WriteLine($"  DNA sequence        : {dna}")
             Console.WriteLine($"  Length              : {dna.Length}")
-            Console.WriteLine($"  Reverse complement  : {dna.ReverseComplement().AsString}")
-            Console.WriteLine($"  Transcription       : {dna.Transcribe().AsString}")
-            Console.WriteLine($"  Translation         : {dna.Translate().AsString}")
+            Console.WriteLine($"  Reverse complement  : {dna.ReverseComplement()}")
+            Console.WriteLine($"  Transcription       : {dna.Transcribe()}")
+            Console.WriteLine($"  Translation         : {dna.Translate()}")
 
-            Dim sequenceLiteral As String = dna.AsString
             Dim gcContent As Double = EvalPyExpr(Of Double)(
-                $"(lambda seq: (seq.count('G') + seq.count('C')) / len(seq) * 100)('{sequenceLiteral}')")
+                $"(lambda seq: (seq.count('G') + seq.count('C')) / len(seq) * 100)('{dna}')")
             Console.WriteLine($"  GC content (%)      : {gcContent:F2}")
         End Using
 
@@ -50,9 +49,7 @@ Public Module Program
         Console.WriteLine("--- Sequence Record Formatting ---")
 
         Using dna = Seq.Create("ATGCGTACCTGAC")
-            Using record = SeqRecord.Create(dna,
-                                           id:="Example",
-                                           description:="Synthetic DNA sequence")
+            Using record = SeqRecord.Create(dna, id:="Example", description:="Synthetic DNA sequence")
                 Console.WriteLine($"  Record ID           : {record.Id}")
                 Console.WriteLine($"  Description         : {record.Description}")
                 Console.WriteLine($"  Sequence length     : {record.Length}")
@@ -68,10 +65,11 @@ Public Module Program
     Private Sub DemoBuiltinPythonInterop()
         Console.WriteLine("--- Python Builtin Integration ---")
 
-        Dim sequenceLength As Integer = EvalPyExpr(Of Integer)("len('ACGTACGT')")
-        Console.WriteLine($"  len('ACGTACGT') = {sequenceLength}")
+        Dim seqLength = EvalPyExpr(Of Integer)("len('ACGTACGT')")
+        Console.WriteLine($"  len('ACGTACGT') = {seqLength}")
 
-        Dim complement As String = EvalPyExpr(Of String)("''.join({'A':'T','C':'G','G':'C','T':'A'}[base] for base in 'ATGC')")
+        Dim complement = EvalPyExpr(Of String)(
+            "''.join({'A':'T','C':'G','G':'C','T':'A'}[base] for base in 'ATGC')")
         Console.WriteLine($"  Python complement expression = {complement}")
 
         Console.WriteLine()

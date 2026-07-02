@@ -108,7 +108,7 @@ Namespace BioPyWrappers
             EnsurePythonInitialized()
             Using Py.GIL()
                 Using strFn As PyObject = Py.Import("builtins").GetAttr("str")
-                    Using strObj As PyObject = strFn.Invoke({_pyObj})
+                    Using strObj As PyObject = strFn.Invoke(_pyObj)
                         Return strObj.As(Of String)()
                     End Using
                 End Using

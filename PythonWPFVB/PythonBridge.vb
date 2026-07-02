@@ -213,7 +213,6 @@ Public Module PythonBridge
             ' Build positional args tuple
             Dim pyArgs = If(args Is Nothing, Array.Empty(Of PyObject)(),
                 Aggregate p In args Select ToPythonRecursive(p) Into ToArray())
-            Dim pyTuple As New PyTuple(pyArgs)
 
             ' Build kwargs dict if provided
             Dim pyKw As PyDict = Nothing
@@ -224,7 +223,7 @@ Public Module PythonBridge
                 Next
             End If
 
-            Dim result = If(pyKw IsNot Nothing, func.Invoke(pyTuple, pyKw), func.Invoke(pyTuple))
+            Dim result = If(pyKw IsNot Nothing, func.Invoke(pyArgs, pyKw), func.Invoke(pyArgs))
             If result Is Nothing OrElse result.IsNone() Then
                 Throw New InvalidOperationException(
                     $"Function {moduleName}.{funcName} returned None, expected {GetType(T).Name}.")
@@ -275,7 +274,6 @@ Public Module PythonBridge
 
             Dim pyArgs = If(args Is Nothing, Array.Empty(Of PyObject)(),
                 Aggregate p In args Select ToPythonRecursive(p) Into ToArray())
-            Dim pyTuple As New PyTuple(pyArgs)
 
             Dim pyKw As PyDict = Nothing
             If kwargs IsNot Nothing Then
@@ -285,7 +283,7 @@ Public Module PythonBridge
                 Next kv
             End If
 
-            Return If(pyKw IsNot Nothing, func.Invoke(pyTuple, pyKw), func.Invoke(pyTuple))
+            Return If(pyKw IsNot Nothing, func.Invoke(pyArgs, pyKw), func.Invoke(pyArgs))
         End Using
     End Function
 

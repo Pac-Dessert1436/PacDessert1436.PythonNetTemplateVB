@@ -69,31 +69,28 @@ Public Module Program
         ' Call Python standard library functions
         Dim randNum As Integer = CallPyFunc(Of Integer)("random", "randint", 1, 100)
         Console.WriteLine($"  Random integer (1-100): {randNum}")
-
-        With GetPyField(Of String)("sys", "version")
-            Console.WriteLine($"  Python version: { .Substring(0, .IndexOf(""""c) - 1)}")
-        End With
+        Console.WriteLine($"  Python version: {GetPyField(Of String)("sys", "version")}")
 
         ' Create and use a custom Python module
         Dim customModuleCode = "
 def greet(name):
     return f'Hello, {name}! Welcome to Python.NET!'
 
-def calculate_factorial(n):
+def calc_factorial(n):
     if n <= 1:
         return 1
     else:
-        return n * calculate_factorial(n-1)"
+        return n * calc_factorial(n-1)"
 
         ' Execute the module code in a new scope
         Using customScope = Py.CreateScope()
             ExecPyCode(customModuleCode, customScope)
 
-            Dim greeting As String = EvalPyExpr(Of String)("greet('VB.NET User')", customScope)
+            Dim greeting = EvalPyExpr(Of String)("greet('VB.NET User')", customScope)
             Console.WriteLine($"  Custom greeting: {greeting}")
 
-            Dim factorialResult As Integer = EvalPyExpr(Of Integer)("calculate_factorial(5)", customScope)
-            Console.WriteLine($"  Factorial of 5: {factorialResult}")
+            Dim factorial = EvalPyExpr(Of Integer)("calc_factorial(5)", customScope)
+            Console.WriteLine($"  Factorial of 5: {factorial}")
         End Using
 
         Console.WriteLine()

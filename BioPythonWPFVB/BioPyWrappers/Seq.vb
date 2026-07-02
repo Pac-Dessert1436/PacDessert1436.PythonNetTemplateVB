@@ -28,7 +28,7 @@ Namespace BioPyWrappers
             EnsurePythonInitialized()
             Using Py.GIL()
                 Dim pyStr = PyConvExt.ToPython(sequence)
-                Dim instance = SeqClass.Value.Invoke({pyStr})
+                Dim instance = SeqClass.Value.Invoke(pyStr)
                 Return New Seq(instance)
             End Using
         End Function
@@ -40,19 +40,12 @@ Namespace BioPyWrappers
                 Using Py.GIL()
                     Using builtins = Py.Import("builtins")
                         Using lenFn = builtins.GetAttr("len")
-                            Using lenObj = lenFn.Invoke({UnsafePyObject})
+                            Using lenObj = lenFn.Invoke(UnsafePyObject)
                                 Return lenObj.As(Of Integer)()
                             End Using
                         End Using
                     End Using
                 End Using
-            End Get
-        End Property
-
-        ''' <summary><c>str(seq)</c></summary>
-        Public ReadOnly Property AsString As String
-            Get
-                Return ToString()
             End Get
         End Property
 
@@ -63,7 +56,7 @@ Namespace BioPyWrappers
                 Using sliceFn = Py.Import("builtins").GetAttr("slice")
                     Dim pyStart = PyConvExt.ToPython(start)
                     Dim pyEnd = PyConvExt.ToPython([end])
-                    Using sliceObj = sliceFn.Invoke({pyStart, pyEnd})
+                    Using sliceObj = sliceFn.Invoke(pyStart, pyEnd)
                         Return New Seq(UnsafePyObject.GetItem(sliceObj))
                     End Using
                 End Using
@@ -96,7 +89,7 @@ Namespace BioPyWrappers
             EnsurePythonInitialized()
             Using Py.GIL()
                 Dim add = UnsafePyObject.GetAttr("__add__")
-                Dim result = add.Invoke({other.UnsafePyObject})
+                Dim result = add.Invoke(other.UnsafePyObject)
                 Return New Seq(result)
             End Using
         End Function
